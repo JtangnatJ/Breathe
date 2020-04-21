@@ -1,7 +1,24 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const db = require('../database/index.js');
+const app = express();
+const port = 3000;
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.post('/breatheSessions', (req, res) => {
+    let breathDuration = Object.keys(req.body)[0];
+    db.saveSession(breathDuration, (err, success) => {
+        if (err) {
+            console.log('error saving into db');
+        } else {
+            res.send('ok');
+        }
+    })
+})
+
+app.listen(port, () => console.log(`Listening on ${port}: ${Date()}`))

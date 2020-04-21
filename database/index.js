@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/breathe');
+mongoose.connect('mongodb://localhost/breathe', { useNewUrlParser: true });
 
 var db = mongoose.connection;
 
@@ -12,20 +12,53 @@ db.once('open', function() {
 });
 
 var breakSchema = mongoose.Schema({
-//   quantity: Number,
-//   description: String
+  // user: String
+  _id: Number,
+  sessions: Array
+  //   quantity: Number,
+  //   description: String
 });
 
-var Break = mongoose.model('Break', breakSchema);
+let Break = mongoose.model('Break', breakSchema);
 
-// var selectAll = function(callback) {
-//   Item.find({}, function(err, items) {
-//     if(err) {
-//       callback(err, null);
-//     } else {
-//       callback(null, items);
-//     }
-//   });
-// };
+const date = new Date();
+const year = date.getFullYear();
+const month = `0${date.getMonth() + 1}`;
+const day = `0${date.getDate()}`;
+const dateString = `${year}${month.slice(-2)}${day.slice(-2)}`;
+const dateNum = parseInt(dateString);
 
-module.exports.selectAll = selectAll;
+const saveSession = (timeString, callback) => {
+  let breath = new Break();
+  Break.findByIdAndUpdate(dateNum, {$push: {sessions: timeString}}, {upsert: true}, (err, data) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, data);
+    }
+  })
+  // breath._id = dateNum;
+  // breath.sessions.push(timeString);
+  // db.runCommand(
+  //   {
+  //     findAndModify: "breaks",
+  //     query: {_id: dateNum},
+  //     update: {$push: {sessions: timeString}},
+  //     upsert: true
+  //   },
+  //   (err) => {
+  //     if (err) {
+  //       callback(err, null);
+  //     } else {
+  //       callback(null, 'saved');
+  //     }
+  //   }
+  // )
+}
+
+const findSessions = (callback) => {
+
+}
+
+module.exports.saveSession = saveSession;
+module.exports.findSessions = findSessions;

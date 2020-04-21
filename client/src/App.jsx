@@ -1,29 +1,53 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import styled from 'styled-components';
+import Breathe from './Breathe.jsx';
+
+const Option = styled.button`
+    float: left;
+    background-color: lightblue;
+    font-size: 20px;
+    position: absolute;
+    border: none;
+    z-index: 2;
+    :hover {
+        text-decoration: underline; 
+    }
+`;
 
 class App extends React.Component {
-    constructor(props) {
+    constructor(props){
         super(props);
         this.state = {
-            onBreak: false,
-            weather: null,
-
+            sessions: false,
+            // breather: true
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
         this.setState({
-            onBreak: !this.state.onBreak
+            sessions: !this.state.sessions
         })
     }
 
     render() {
-        return (
-            <div>
-                <Button handleClick={this.handleClick} />
-            </div>
-        )
+        if (this.state.sessions) {
+            return(
+                <div>
+                    <Option onClick={this.handleClick}>Back</Option>
+                    {/* <Sessions /> */}
+                </div>                
+            )
+        } else {
+            return (
+                <div>
+                    <Option onClick={this.handleClick}>Sessions</Option>
+                    <Breathe />
+                </div>
+                
+            )
+        }
     }
 }
+
+export default App;
