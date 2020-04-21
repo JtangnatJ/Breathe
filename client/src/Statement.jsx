@@ -14,7 +14,7 @@ const breatheAnimation = keyframes`
 `;
 
 const BreathingQuote = styled(Quote)`
-    animation: ${breatheAnimation} 8s infinite;
+    animation: ${breatheAnimation} 9s infinite;
 `;
 
 

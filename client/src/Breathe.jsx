@@ -12,7 +12,7 @@ const breatheAnimation = keyframes`
 `;
 
 const Wrapper = styled.div`
-    background-color: lightblue;
+    background-color: #8EC6C5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ const Working = styled.div`
     position: absolute;
     justify-content: center;
     align-items: center;
-    border: 2px solid white;
+    border: 2px solid #F4F4F4;
     width: 400px;
     height: 400px;
     margin: auto;
@@ -35,7 +35,7 @@ const Working = styled.div`
 `;
 
 const Breather = styled(Working)`
-    animation: ${breatheAnimation} 8s infinite;
+    animation: ${breatheAnimation} 9s infinite;
 `;
 
 class Breathe extends React.Component {
@@ -56,7 +56,7 @@ class Breathe extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(function(){alert('Breathe')}, 5400000);
+        setTimeout(function(){alert('Breathe')}, 300000);
     }
 
     handleClick() {

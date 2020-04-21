@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import DailyBreakdown from './DailyBreakdown.jsx';
 
 const Wrapper = styled.div`
-    background-color: lightblue;
+    background-color: #8EC6C5;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -14,9 +14,21 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-    position: relative;
-    top: 200px;
-    font-size: 45px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 10%;
+    font-size: 5em;
+`;
+
+const GraphWrapper = styled.div`
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 75%
 `;
 
 class Sessions extends React.Component {
@@ -43,7 +55,7 @@ class Sessions extends React.Component {
             success: (data) => {
                 this.setState({
                     sessions: data,
-                    dailySession: data[0]
+                    dailySession: data[0].sessions
                 })
             },
             error: () => {
@@ -56,8 +68,10 @@ class Sessions extends React.Component {
         if (this.state.daily) {
             return(
                 <Wrapper>
-                    <Title>Daily?</Title>
-                    <DailyBreakdown session={this.state.dailySession}/>
+                    <Title>Daily Breakdown</Title>
+                    <GraphWrapper>
+                        <DailyBreakdown session={this.state.dailySession}/>
+                    </GraphWrapper>
                 </Wrapper>
             )
         }

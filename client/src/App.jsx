@@ -5,13 +5,16 @@ import Sessions from './Sessions.jsx';
 
 const Option = styled.button`
     float: left;
-    background-color: lightblue;
+    background-color: #8EC6C5;
     font-size: 20px;
     position: absolute;
     border: none;
     z-index: 2;
     :hover {
         text-decoration: underline; 
+    }
+    :focus {
+        outline: 0;
     }
 `;
 
@@ -42,7 +45,7 @@ class App extends React.Component {
         } else {
             return (
                 <div>
-                    <Option onClick={this.handleClick}>Sessions</Option>
+                    <Option onClick={this.handleClick}>Howzit?</Option>
                     <Breathe />
                 </div>
                 
