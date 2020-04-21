@@ -23,7 +23,7 @@ class Congratulations extends React.Component {
     saveSession(string) {
         $.ajax({
             type: 'POST',
-            url: '/breatheSessions',
+            url: '/api/breatheSessions',
             data: string,
             success: () => {console.log('successfully posted')},
             error: () => {console.log('error posting')}

@@ -10,7 +10,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // app.get('/', (req, res) => res.send('Hello World!'));
 
-app.post('/breatheSessions', (req, res) => {
+app.get('/api/breatheSessions', (req, res) => {
+    db.findSessions((err, sessions) => {
+        if (err) {
+            console.log('err');
+        } else {
+            res.send(sessions);
+        }
+    });
+})
+
+app.post('/api/breatheSessions', (req, res) => {
     let breathDuration = Object.keys(req.body)[0];
     db.saveSession(breathDuration, (err, success) => {
         if (err) {

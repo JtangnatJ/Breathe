@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/breathe', { useNewUrlParser: true });
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/breathe');
 
 var db = mongoose.connection;
 
@@ -57,8 +57,15 @@ const saveSession = (timeString, callback) => {
 }
 
 const findSessions = (callback) => {
-
+  Break.find({}, (err, sessions) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, sessions);
+    }
+  }).sort({_id: -1});
 }
 
 module.exports.saveSession = saveSession;
 module.exports.findSessions = findSessions;
+module.exports.dateNum = dateNum;

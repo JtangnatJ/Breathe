@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Breathe from './Breathe.jsx';
+import Sessions from './Sessions.jsx';
 
 const Option = styled.button`
     float: left;
@@ -35,7 +36,7 @@ class App extends React.Component {
             return(
                 <div>
                     <Option onClick={this.handleClick}>Back</Option>
-                    {/* <Sessions /> */}
+                    <Sessions />
                 </div>                
             )
         } else {
