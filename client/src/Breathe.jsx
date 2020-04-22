@@ -53,10 +53,15 @@ class Breathe extends React.Component {
         this.startTime;
         this.endTime;
         this.totalTime;
+        this.timeOut;
     }
 
     componentDidMount() {
-        setTimeout(function(){alert('Breathe')}, 300000);
+        this.timeOut = setTimeout(function(){alert('Breathe')}, 5400000);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timeOut);
     }
 
     handleClick() {

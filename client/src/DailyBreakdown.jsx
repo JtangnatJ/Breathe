@@ -44,7 +44,7 @@ class DailyBreakdown extends React.Component {
             this.setState({
                 sessions: this.props.session,
                 data: [
-                    { name: 'STRESS', value: this.calculateTimeSinceMidnight() },
+                    { name: 'STRESS', value: (this.calculateTimeSinceMidnight() - this.totalBreathingTime(this.props.session)) },
                     { name: 'Whew', value: this.totalBreathingTime(this.props.session) },
                     { name: '???', value: this.calculateTimeUntilTomorrow() }
                 ]
