@@ -35,7 +35,7 @@ const Working = styled.div`
 `;
 
 const Breather = styled(Working)`
-    animation: ${breatheAnimation} 9s infinite;
+    animation: ${breatheAnimation} 8s infinite;
 `;
 
 class Breathe extends React.Component {
